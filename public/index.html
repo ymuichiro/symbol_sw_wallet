@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="./main.js"></script> -->
+</head>
+
+<body>
+  <h1>sample</h1>
+  <button onclick="insertDB()">run</button>
+
+  <script>
+    // 初期化処理
+    const request = indexedDB.open("symbol_sdk");
+    request.onerror = e => console.error;
+    request.onupgradeneeded = e => {
+      const db = e.target.result;
+      db.onerror = console.error;
+      try {
+        const objectStore = db.createObjectStore("account", { keyPath: "title" });
+      } finally {
+        console.log("close");
+        db.close();
+      }
+      request.onsuccess = e => {
+        const transaction = event.target.result.transaction("account", "readwrite");
+        const objectRequest = transaction.objectStore("account").put("vvvvvvv");
+        objectRequest.onerror = () => reject(Error("Error text"));
+        db.result.close();
+      };
+    };
+
+    function insertDB() {
+      const request = indexedDB.open("symbol_sdk");
+      request.onerror = e => console.error;
+      request.onsuccess = e => {
+        console.log(e, request.result.objectStoreNames);
+        const transaction = request.result.transaction("account", "readwrite");
+        const store = transaction.objectStore("title");
+        store.put("vvvvvv");
+        request.result.close();
+      };
+    }
+
+
+  </script>
+</body>
+
+</html>
