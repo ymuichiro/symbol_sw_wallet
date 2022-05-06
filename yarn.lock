@@ -1710,10 +1710,10 @@ symbol-sdk@2.0.0:
     utf8 "^2.1.2"
     ws "^7.3.1"
 
-symbol_sdk_min@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/symbol_sdk_min/-/symbol_sdk_min-0.0.4.tgz#7a4878cbe84129b21ccf18b6f6a7fbb1796e4023"
-  integrity sha512-fb4CEq6DwaeXuMFp5ldCSlD5GszL6K/xx2dpgBfFoDSpDZM7HK1eODj29cLlWrVE7j7DvVMm5Sxm/0Mb6t17lQ==
+symbol_sdk_min@^0.0.43:
+  version "0.0.43"
+  resolved "https://registry.yarnpkg.com/symbol_sdk_min/-/symbol_sdk_min-0.0.43.tgz#6c347efc1bd4a70ff962bb52c8c0733cc3781ded"
+  integrity sha512-ARxJoBADpi1IWlWAgh80oszVxaZFzt6hkBgxKMQo/AtZoKAEAyZ0oEfInFdcrVhf1S2XHBo6UNBlPBrT6YBZeQ==
   dependencies:
     symbol-hd-wallets "0.14.2"
     symbol-qr-library "0.14.2"

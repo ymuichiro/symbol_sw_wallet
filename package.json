@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "indexeddb_wrapper_far": "^0.0.3",
-    "symbol_sdk_min": "^0.0.4",
+    "symbol_sdk_min": "^0.0.43",
     "typescript": "^4.6.3"
   },
   "devDependencies": {

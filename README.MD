@@ -27,7 +27,7 @@ if ("serviceWorker" in navigator) {
 - アグリゲートTXへの対応
 
 ### Credentials Management APIの検証
-- Chromeのみで発生する認証情報取得時を発見 --> issue 上げておく
+- Chromeのみで発生する認証情報取得時の不具合を発見 --> Chromeへissue上げておく
 - 対象ブラウザをSafariとEdge、モバイルOS群として開発を進める
 - 秘密鍵以外の情報はindexedDB上とする
 

@@ -1,19 +1,24 @@
 import { IndexedDBWrapper, DatabaseTableBase } from "indexeddb_wrapper_far";
-import { SystemStorageTable } from "../type/Storage";
+import { SystemInfo } from "../type/SystemModels";
 
 
-export class SystemStorage extends IndexedDBWrapper<SystemStorageTable> {
+export class SystemStorage extends IndexedDBWrapper<SystemInfo> {
   static readonly keyPath: string = "database/system";
 
-  constructor(storeName: string, mode: IDBTransactionMode) {
-    super(storeName, mode);
+  constructor(mode: IDBTransactionMode) {
+    super("system", mode);
   }
 
-  static getInitValue(): DatabaseTableBase<SystemStorageTable> {
+  public start(): void {
+    this.initialize(SystemStorage.getInitValue());
+  }
+
+  static getInitValue(): DatabaseTableBase<SystemInfo> {
     return {
       keyPath: SystemStorage.keyPath,
       data: {
-        lang: "ja"
+        lang: "ja",
+        selectedWalletId: undefined,
       },
     };
   }

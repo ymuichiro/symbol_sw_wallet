@@ -1,18 +1,35 @@
 import { IndexedDBWrapper, DatabaseTableBase } from "indexeddb_wrapper_far";
-import { NetworkStorageTable } from "../type/Storage";
+import { NetworkStore } from "../type/NetworkModels";
 
-
-export class NetworkStorage extends IndexedDBWrapper<NetworkStorageTable> {
+export class NetworkStorage extends IndexedDBWrapper<NetworkStore | undefined> {
   static readonly keyPath: string = "database/network";
 
-  constructor(storeName: string, mode: IDBTransactionMode) {
-    super(storeName, mode);
+  constructor(mode: IDBTransactionMode) {
+    super("network", mode);
   }
 
-  static getInitValue(): DatabaseTableBase<NetworkStorageTable> {
+  public start(): void {
+    this.initialize(NetworkStorage.getInitValue());
+  }
+
+  static getInitValue(): DatabaseTableBase<undefined> {
     return {
       keyPath: NetworkStorage.keyPath,
-      data: {},
+      data: undefined,
     };
   }
+
+  public async getNodeList(): Promise<NetworkStore | undefined> {
+    const db = await this.get(NetworkStorage.keyPath);
+    return db.data === undefined ? undefined : db.data;
+  }
+
+  public async updateNodeList(networkStore: NetworkStore): Promise<void> {
+    await this.put({ keyPath: NetworkStorage.keyPath, data: networkStore });
+  }
+
+  public async clearNodeList(): Promise<void> {
+    await this.put({ keyPath: NetworkStorage.keyPath, data: undefined });
+  }
+
 }
